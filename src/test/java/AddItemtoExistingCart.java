@@ -11,11 +11,11 @@ import org.testng.annotations.Test;
 public class AddItemtoExistingCart extends BaseClass {
 
     @BeforeClass
-    public void Creatcart() {
+    public void AdditeminCart() {
         RestAssured.baseURI = "http://simple-grocery-store-api.online/";
         httpRequest = RestAssured.given();
         JSONObject requestparams = new JSONObject();
-        requestparams.put("productId", "1225");
+        requestparams.put("productId", "5477");
         httpRequest.header("content-type", "application/json; charset=utf-8");
         httpRequest.body(requestparams.toString());
         response = httpRequest.request(Method.POST, "/carts/" + cartid + "/items");

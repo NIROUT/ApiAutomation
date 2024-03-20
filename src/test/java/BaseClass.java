@@ -4,9 +4,10 @@ import io.restassured.specification.RequestSpecification;
 public class BaseClass {
 //    public static RequestSpecification httpRequest;
     public static Response response;
-    public String productid = "4646";
-    public static String cartid = "pbPngpMlOhoTdg3GP-zTQ";
+    public static String productid = "4646";
+    public static String cartid = "ABgimxireiFxtPjbhsxkk";
 
-    public String itemId = "520465782";
+    public static String itemId = "735048154";
     public static RequestSpecification httpRequest;
+
 }

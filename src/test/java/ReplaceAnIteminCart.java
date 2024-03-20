@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 public class ReplaceAnIteminCart extends BaseClass {
 
     @BeforeClass
-    public void Creatcart() {
+    public void Replaceitemincart() {
         RestAssured.baseURI = "http://simple-grocery-store-api.online/";
         httpRequest = RestAssured.given();
         JSONObject requestparams = new JSONObject();

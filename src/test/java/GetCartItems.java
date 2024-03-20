@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 public class GetCartItems extends BaseClass{
     @BeforeClass
-    public void getsingleProduct() throws InterruptedException {
+    public void getsitemsinCart() throws InterruptedException {
         RestAssured.baseURI = "http://simple-grocery-store-api.online/";
         httpRequest = RestAssured.given();
         response = httpRequest.request(Method.GET, "/carts/"+cartid+"/items");

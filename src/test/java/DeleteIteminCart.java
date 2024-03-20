@@ -1,24 +1,21 @@
-
-import io.restassured.RestAssured;
-import io.restassured.http.Method;
-
-import org.json.JSONObject;
+import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class ModifyanIteminCart extends BaseClass{
-    @BeforeClass
-    public void Modifyitemincart() {
-        RestAssured.baseURI = "http://simple-grocery-store-api.online/";
-        httpRequest = RestAssured.given();
-        JSONObject requestparams = new JSONObject();
-        requestparams.put("quantity", "2");
-        httpRequest.header("content-type", "application/json; charset=utf-8");
-        httpRequest.body(requestparams.toString());
-        response = httpRequest.request(Method.PATCH, "/carts/" + cartid + "/items/"+itemId);
+import static io.restassured.RestAssured.given;
 
+public class DeleteIteminCart extends BaseClass{
+    Response response;
+    @BeforeClass
+    public void DeleteItemincart() {
+        response = given().baseUri("http://simple-grocery-store-api.online/")
+                .when()
+                .delete("/carts/" + cartid + "/items/"+itemId)
+                .then()
+                .extract().response();
+        System.out.println(response.getBody().asString());
     }
     @Test
     public void respose() {
@@ -46,6 +43,7 @@ public class ModifyanIteminCart extends BaseClass{
         Assert.assertTrue(responseTime < 2500);
 
     }
+
 
     @AfterClass
     public void tearDown() {
