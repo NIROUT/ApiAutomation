@@ -5,24 +5,19 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-
-
-public class AddItemtoExistingCart extends BaseClass {
-
+public class UpdateanOrder extends BaseClass{
     @BeforeClass
-    public void AdditeminCart() {
+    public void Updateorder() {
         RestAssured.baseURI = "http://simple-grocery-store-api.online/";
         httpRequest = RestAssured.given();
         JSONObject requestparams = new JSONObject();
-        requestparams.put("productId", "4646");
+        requestparams.put("customerName", "Varrun");
         httpRequest.header("content-type", "application/json; charset=utf-8");
+        httpRequest.header("Authorization", accessToken);
         httpRequest.body(requestparams.toString());
-        response = httpRequest.request(Method.POST, "/carts/" + cartid + "/items");
+        response = httpRequest.request(Method.PATCH, "/orders/" + orderId );
 
     }
-
-
     @Test
     public void respose() {
         String responseBody = response.getBody().asString();
@@ -34,7 +29,7 @@ public class AddItemtoExistingCart extends BaseClass {
     @Test
     public void StatusCode() {
         int status = response.getStatusCode();
-        Assert.assertEquals(status, 201);
+        Assert.assertEquals(status, 204);
         System.out.println("Valid Status Code:" + status);
 
     }
@@ -50,13 +45,6 @@ public class AddItemtoExistingCart extends BaseClass {
 
     }
 
-    @Test
-    public void CheckContent() {
-        String contenttype = response.header("content-type");
-        System.out.println("Content Type:" + contenttype);
-        Assert.assertEquals(contenttype, "application/json; charset=utf-8");
-
-    }
 
     @AfterClass
     public void tearDown() {
